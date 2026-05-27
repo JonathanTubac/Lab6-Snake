@@ -1,0 +1,24 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(30, 28px); /* 20 columnas de 28px */
+  grid-template-rows: repeat(30, 28px);    /* 20 filas de 28px */
+  border: 2px solid #333;
+  background: #111;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+.cell {
+  width: 28px;
+  height: 28px;
+  border: white;
+}
+
+.cell.snake {
+  background: green;
+}
+
+.cell.food {
+  background: red;
+}
