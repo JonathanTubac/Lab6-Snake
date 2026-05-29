@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [snake, setSnake] = useState([{ x: 10, y: 10 }, { x: 9, y: 10 }])
+  const [snake, setSnake] = useState([{ x: 10, y: 10 }, { x: 9, y: 10 }, {x: 8, y: 10}])
   const [direction, setDirection] = useState({ x: 1, y: 0 }) // empieza moviéndose a la derecha
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key == 'ArrowUp') setDirection({ x: 0, y: -1 })
-      if (e.key == 'ArrowDown') setDirection({ x: 0, y: 1 })
-      if (e.key == 'ArrowLeft') setDirection({ x: -1, y: 0 })
-      if (e.key == 'ArrowRight') setDirection({ x: 1, y: 0 })
+      setDirection(prev => {
+        if (e.key === 'ArrowUp' && prev.y !== 1) return { x: 0, y: -1 }
+        if (e.key === 'ArrowDown' && prev.y !== -1) return { x: 0, y: 1 }
+        if (e.key === 'ArrowLeft' && prev.x !== 1) return { x: -1, y: 0 }
+        if (e.key === 'ArrowRight' && prev.x !== -1) return { x: 1, y: 0 }
+        return prev 
+      })
     }
 
     window.addEventListener('keydown', handleKey)
@@ -25,7 +28,7 @@ function App() {
           x: prev[0].x + direction.x,
           y: prev[0].y + direction.y,
         }
-        // nueva serpiente: nueva cabeza + todo menos el último segmento
+
         return [newHead, ...prev.slice(0, -1)]
       })
     }, 200)
