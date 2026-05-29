@@ -7,7 +7,9 @@ function App() {
 
   return (
     <>
+    <h1>Snake game</h1>
       <Board snake={snake} />
+      
     </>
   )
 }

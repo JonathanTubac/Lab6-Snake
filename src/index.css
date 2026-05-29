@@ -1,4 +1,17 @@
+@font-face {
+  font-family: 'snake';
+  src: url(./assets/fonts/SnakeChan.otf);
+}
+
 body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   background-color: black;
+  height: 100vh;
+  width: 100%;
+  font-family: 'snake';
+  color: white;
 }
+
