@@ -4,16 +4,14 @@
 }
 
 .snake.body {
-  background-image: url('/body-snake.png');
-  background-size: cover;
-  background-repeat: repeat;
+  background: #0e9807;
 }
 
 .snake.head {
-  background: green;
-  border-radius: 0px 10px 10px 0px;
+  background-image: url('/head.png');
+  background-size: cover;
 }
 
 .snake.tail {
-  background: darkgreen;
+  background: #0e9807;
 }
