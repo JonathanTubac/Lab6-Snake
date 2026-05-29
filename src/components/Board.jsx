@@ -2,7 +2,7 @@ import './Board.css'
 import GameOver from './GameOver'
 
 export default function Board({ snake, food, gameOver, score, onRestart }) {
-    const CELL = 28 //size of each cell of the board
+    const CELL = 20
 
     const getAngle = (from, to) => {
         if (to.x > from.x) return 0    // derecha

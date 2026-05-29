@@ -1,13 +1,15 @@
 .board {
   display: grid;
-  grid-template-columns: repeat(30, 28px); /* 20 columnas de 28px */
-  grid-template-rows: repeat(30, 28px);    /* 20 filas de 28px */
+  grid-template-columns: repeat(30, 20px);
+  grid-template-rows: repeat(30, 20px);
   border: 2px solid #8d8d8d;
-  background: #111;
-  justify-content: center;
-  align-content: center;
+  background-color: #111;
+  background-image:
+    linear-gradient(to right, #1e1e1e 1px, transparent 1px),
+    linear-gradient(to bottom, #1e1e1e 1px, transparent 1px);
+  background-size: 20px 20px;
   width: fit-content;
-  height: 100%;
+  height: fit-content;
   overflow: hidden;
   position: relative;
 }
