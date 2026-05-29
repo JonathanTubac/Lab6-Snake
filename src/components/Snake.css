@@ -1,0 +1,19 @@
+.snake {
+  position: absolute;
+  transition: top 0.15s linear, left 0.15s linear;
+}
+
+.snake.body {
+  background-image: url('/body-snake.png');
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+.snake.head {
+  background: green;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.snake.tail {
+  background: darkgreen;
+}

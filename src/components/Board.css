@@ -13,29 +13,3 @@
   overflow: hidden;
   position: relative;
 }
-
-.snake {
-  position: absolute;
-  transition: top 0.15s linear, left 0.15s linear;
-}
-
-.snake.body {
-  background-image: url('/body-snake.png');
-  background-size: cover; /* o 28px 28px si quiere que repita por celda */
-  background-repeat: repeat;
-}
-
-.snake.head {
-  background: green; /* sin textura */
-  border-radius: 0px 10px 10px 0px;
-}
-
-.snake.tail {
-  background: darkgreen; /* sin textura */
-}
-
-.food {
-  position: absolute;
-  background: red;
-  border-radius: 50%; /* círculo */
-}
