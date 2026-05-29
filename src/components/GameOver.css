@@ -1,18 +1,74 @@
 .overlay {
-  position: absolute; 
-  inset: 0;            
-  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(3px);
 }
 
 .modal {
   background: #1a1a1a;
-  padding: 2rem;
-  border-radius: 8px;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  border: 2px solid #333;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #e53935;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px rgba(229, 57, 53, 0.5);
+}
+
+.modal-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-score-label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-score-value {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
+
+.modal-btn {
+  padding: 0.75rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #111;
+  background: #4caf50;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.modal-btn:hover {
+  background: #66bb6a;
+}
+
+.modal-btn:active {
+  transform: scale(0.96);
 }

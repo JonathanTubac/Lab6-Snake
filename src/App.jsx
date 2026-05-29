@@ -1,6 +1,6 @@
 import Board from './components/Board'
 import Header from './components/Header'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -9,6 +9,9 @@ function App() {
   const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
   const [food, setFood] = useState({ x: 5, y: 5 })
+  const foodRef = useRef(food)
+
+  useEffect(() => { foodRef.current = food }, [food])
 
   const generateFood = (currentSnake) => {
     let newFood
@@ -63,7 +66,7 @@ function App() {
           return prev
         }
 
-        const ateFood = newHead.x === food.x && newHead.y === food.y
+        const ateFood = newHead.x === foodRef.current.x && newHead.y === foodRef.current.y
 
         if (ateFood) {
           setFood(generateFood(prev))
@@ -79,7 +82,7 @@ function App() {
 
 
     return () => clearInterval(interval)
-  }, [direction])
+  }, [direction, gameOver])
   return (
     <div className="app">
       <Header score={score} />
