@@ -1,4 +1,5 @@
 import Board from './components/Board'
+import Header from './components/Header'
 import { useEffect, useState } from 'react'
 import './App.css'
 
@@ -68,7 +69,7 @@ function App() {
           setFood(generateFood(prev))
           setScore(s => s + 10)
         }
-        
+
         return ateFood
           ? [newHead, ...prev]
           : [newHead, ...prev.slice(0, -1)]
@@ -78,10 +79,10 @@ function App() {
 
 
     return () => clearInterval(interval)
-  }, [direction]) // se reinicia cada vez que cambia la dirección
+  }, [direction])
   return (
-    <>
-      <h1>Snake game</h1>
+    <div className="app">
+      <Header score={score} />
       <Board
         snake={snake}
         food={food}
@@ -90,7 +91,7 @@ function App() {
         onRestart={handleRestart}
       />
 
-    </>
+    </div>
   )
 }
 

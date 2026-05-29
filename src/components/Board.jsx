@@ -4,7 +4,13 @@ import GameOver from './GameOver'
 export default function Board({ snake, food, gameOver, score, onRestart }) {
     const CELL = 28 //size of each cell of the board
 
-
+    const getAngle = (from, to) => {
+        if (to.x > from.x) return 0    // derecha
+        if (to.x < from.x) return 180  // izquierda
+        if (to.y > from.y) return 90   // abajo
+        if (to.y < from.y) return 270  // arriba
+        return 0
+    }
     return (
         <div className="board">
             {snake.map((seg, i) => {
@@ -12,13 +18,22 @@ export default function Board({ snake, food, gameOver, score, onRestart }) {
                 if (i === 0) tipo = 'head'
                 if (i === snake.length - 1) tipo = 'tail'
 
+                const angle = i === 0
+                    ? getAngle(snake[1], snake[0])
+                    : getAngle(snake[i], snake[i - 1])
+
                 return (
-                    <div key={i} className={`snake ${tipo}`} style={{
-                        left: seg.x * CELL,
-                        top: seg.y * CELL,
-                        width: CELL,
-                        height: CELL
-                    }} />
+                    <div
+                        key={i}
+                        className={`snake ${tipo}`}
+                        style={{
+                            left: seg.x * CELL,
+                            top: seg.y * CELL,
+                            width: CELL,
+                            height: CELL,
+                            transform: `rotate(${angle}deg)`,
+                        }}
+                    />
                 )
             })}
 
@@ -28,7 +43,7 @@ export default function Board({ snake, food, gameOver, score, onRestart }) {
                 width: CELL,
                 height: CELL,
             }} />
-            
+
             {gameOver && (
                 <GameOver score={score} onRestart={onRestart} />
             )}
