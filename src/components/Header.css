@@ -31,6 +31,13 @@
   letter-spacing: 1px;
 }
 
+.game-difficulty {
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .score-value {
   font-size: 1.8rem;
   font-weight: bold;

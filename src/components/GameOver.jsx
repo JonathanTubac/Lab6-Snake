@@ -1,6 +1,6 @@
 import './GameOver.css'
 
-export default function GameOver({ score, onRestart }) {
+export default function GameOver({ score, onRestart, onMenu }) {
   return (
     <div className="overlay">
       <div className="modal">
@@ -9,9 +9,14 @@ export default function GameOver({ score, onRestart }) {
           <span className="modal-score-label">Puntaje final</span>
           <span className="modal-score-value">{score}</span>
         </div>
-        <button className="modal-btn" onClick={onRestart}>
-          Jugar de nuevo
-        </button>
+        <div className="modal-actions">
+          <button className="modal-btn modal-btn--primary" onClick={onRestart}>
+            Reintentar
+          </button>
+          <button className="modal-btn modal-btn--secondary" onClick={onMenu}>
+            Menú
+          </button>
+        </div>
       </div>
     </div>
   )

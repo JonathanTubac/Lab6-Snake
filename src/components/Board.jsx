@@ -1,7 +1,7 @@
 import './Board.css'
 import GameOver from './GameOver'
 
-export default function Board({ snake, food, gameOver, score, onRestart }) {
+export default function Board({ snake, food, gameOver, score, onRestart, onMenu }) {
     const CELL = 20
 
     const getAngle = (from, to) => {
@@ -45,7 +45,7 @@ export default function Board({ snake, food, gameOver, score, onRestart }) {
             }} />
 
             {gameOver && (
-                <GameOver score={score} onRestart={onRestart} />
+                <GameOver score={score} onRestart={onRestart} onMenu={onMenu} />
             )}
         </div>
     )
