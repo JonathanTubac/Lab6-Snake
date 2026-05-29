@@ -12,7 +12,6 @@ const getSpeed = (difficulty, score) => {
   if (difficulty === 'easy')   return 150
   if (difficulty === 'normal') return 100
   if (difficulty === 'hard')   return 60
-  // auto: empieza en 150ms, baja 10ms cada 30 puntos, mínimo 40ms
   return Math.max(40, 150 - Math.floor(score / 30) * 10)
 }
 
@@ -25,10 +24,12 @@ function App() {
   const [score, setScore]           = useState(0)
   const [food, setFood]             = useState(INITIAL_FOOD)
 
-  const foodRef      = useRef(food)
-  const directionRef = useRef(direction)
-  const scoreRef     = useRef(score)
+  const foodRef       = useRef(food)
+  const directionRef  = useRef(direction)
+  const scoreRef      = useRef(score)
   const difficultyRef = useRef(difficulty)
+  const eatSound      = useRef(new Audio('/eat.wav'))
+  const gameOverSound = useRef(new Audio('/game_over.wav'))
 
   useEffect(() => { foodRef.current = food },           [food])
   useEffect(() => { directionRef.current = direction }, [direction])
@@ -96,16 +97,22 @@ function App() {
         const newHead = { x: prev[0].x + dir.x, y: prev[0].y + dir.y }
 
         if (newHead.x < 0 || newHead.x >= 30 || newHead.y < 0 || newHead.y >= 30) {
+          gameOverSound.current.currentTime = 0
+          gameOverSound.current.play()
           setGameOver(true)
           return prev
         }
         if (prev.some(seg => seg.x === newHead.x && seg.y === newHead.y)) {
+          gameOverSound.current.currentTime = 0
+          gameOverSound.current.play()
           setGameOver(true)
           return prev
         }
 
         const ateFood = newHead.x === foodRef.current.x && newHead.y === foodRef.current.y
         if (ateFood) {
+          eatSound.current.currentTime = 0
+          eatSound.current.play()
           setFood(generateFood(prev))
           setScore(s => s + 10)
         }
