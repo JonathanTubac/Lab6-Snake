@@ -3,15 +3,28 @@
   transition: top 0.15s linear, left 0.15s linear;
 }
 
-.snake.body {
-  background: #0e9807;
+.snake.body,
+.snake.tail {
+  background: transparent;
 }
+
+.snake.tail::before {
+  border-radius: 50% 0 0 50%;
+}
+
+.snake.body::before,
+.snake.tail::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 38% 32%, #6ee86a, #0e9807);
+  box-shadow:
+    inset 0 -3px 5px rgba(0, 0, 0, 0.45),
+    inset 0 2px 3px rgba(255, 255, 255, 0.2);
+}
+
 
 .snake.head {
   background-image: url('/head.png');
   background-size: cover;
-}
-
-.snake.tail {
-  background: #0e9807;
 }
