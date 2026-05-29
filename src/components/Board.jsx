@@ -22,6 +22,13 @@ export default function Board({ snake, food, gameOver, score, onRestart }) {
                 )
             })}
 
+            <div className="food" style={{
+                left: food.x * CELL,
+                top: food.y * CELL,
+                width: CELL,
+                height: CELL,
+            }} />
+            
             {gameOver && (
                 <GameOver score={score} onRestart={onRestart} />
             )}

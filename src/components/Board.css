@@ -31,3 +31,9 @@
 .snake.tail {
   background: darkgreen; /* sin textura */
 }
+
+.food {
+  position: absolute;
+  background: red;
+  border-radius: 50%; /* círculo */
+}

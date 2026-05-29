@@ -8,7 +8,19 @@ function App() {
   const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
   const [food, setFood] = useState({ x: 5, y: 5 })
-  
+
+  const generateFood = (currentSnake) => {
+    let newFood
+    do {
+      newFood = {
+        x: Math.floor(Math.random() * 20),
+        y: Math.floor(Math.random() * 20),
+      }
+    } while (currentSnake.some(seg => seg.x === newFood.x && seg.y === newFood.y))
+
+    return newFood
+  }
+
   const handleRestart = () => {
     setSnake([{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }])
     setDirection({ x: 1, y: 0 })
@@ -49,9 +61,21 @@ function App() {
           setGameOver(true)
           return prev
         }
-        return [newHead, ...prev.slice(0, -1)]
+
+        const ateFood = newHead.x === food.x && newHead.y === food.y
+
+        if (ateFood) {
+          setFood(generateFood(prev))
+          setScore(s => s + 10)
+        }
+        
+        return ateFood
+          ? [newHead, ...prev]
+          : [newHead, ...prev.slice(0, -1)]
       })
     }, 100)
+
+
 
     return () => clearInterval(interval)
   }, [direction]) // se reinicia cada vez que cambia la dirección
