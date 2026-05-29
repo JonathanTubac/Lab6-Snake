@@ -6,6 +6,15 @@ function App() {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }])
   const [direction, setDirection] = useState({ x: 1, y: 0 }) // empieza moviéndose a la derecha
   const [gameOver, setGameOver] = useState(false)
+  const [score, setScore] = useState(0)
+  const [food, setFood] = useState({ x: 5, y: 5 })
+  
+  const handleRestart = () => {
+    setSnake([{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }])
+    setDirection({ x: 1, y: 0 })
+    setScore(0)
+    setGameOver(false)
+  }
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -23,6 +32,8 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (gameOver) return
+
     const interval = setInterval(() => {
       setSnake(prev => {
         const newHead = {
@@ -31,7 +42,7 @@ function App() {
         }
         if (newHead.x < 0 || newHead.x >= 30 || newHead.y < 0 || newHead.y >= 30) {
           setGameOver(true)
-          return prev // no actualiza la serpiente
+          return prev
         }
 
         if (prev.some(seg => seg.x === newHead.x && seg.y === newHead.y)) {
@@ -40,14 +51,20 @@ function App() {
         }
         return [newHead, ...prev.slice(0, -1)]
       })
-    }, 200)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [direction]) // se reinicia cada vez que cambia la dirección
   return (
     <>
       <h1>Snake game</h1>
-      <Board snake={snake} />
+      <Board
+        snake={snake}
+        food={food}
+        gameOver={gameOver}
+        score={score}
+        onRestart={handleRestart}
+      />
 
     </>
   )

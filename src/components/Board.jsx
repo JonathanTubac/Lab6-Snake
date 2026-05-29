@@ -1,6 +1,7 @@
 import './Board.css'
+import GameOver from './GameOver'
 
-export default function Board({ snake, food }) {
+export default function Board({ snake, food, gameOver, score, onRestart }) {
     const CELL = 28 //size of each cell of the board
 
 
@@ -20,6 +21,10 @@ export default function Board({ snake, food }) {
                     }} />
                 )
             })}
+
+            {gameOver && (
+                <GameOver score={score} onRestart={onRestart} />
+            )}
         </div>
     )
 }
