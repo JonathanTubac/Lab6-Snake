@@ -8,8 +8,8 @@ export default function Board({ snake, food }) {
         <div className="board">
             {snake.map((seg, i) => (
                 <div key={i} className="cell snake" style={{
-                    gridRow: seg.y,
-                    gridColumn: seg.x,
+                    left: seg.y * CELL,
+                    top: seg.x * CELL,
                     width: CELL,
                     height: CELL
                 }} />

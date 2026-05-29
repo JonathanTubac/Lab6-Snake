@@ -8,6 +8,12 @@
   align-content: center;
   width: fit-content;
   height: 100%;
+  position: relative;
+}
+
+.snake {
+  position: absolute;
+  transition: top 0.15s linear, left 0.15s linear;
 }
 
 .cell {
